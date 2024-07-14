@@ -1,0 +1,20 @@
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - ls
+    - pwd
+    - ./gradlew clean build assemble
+
+test:
+  stage: test
+  script:
+    - ls
+    - pwd
+    - ./gradlew test

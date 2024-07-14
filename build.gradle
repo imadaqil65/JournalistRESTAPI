@@ -1,0 +1,54 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 's3-cb02-grp1'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	// Flyway Core: Handles database schema migration management.
+	implementation 'org.flywaydb:flyway-core:9.4.0'
+	// Flyway MySQL: Provides MySQL-specific functionality for Flyway migrations.
+	implementation 'org.flywaydb:flyway-mysql:9.4.0'
+	// MySQL JDBC driver for database connectivity.
+	implementation 'com.mysql:mysql-connector-j:8.4.0'
+	// Apache Commons Compress: A library that provides a unified interface to various compression and archive formats such as ZIP, TAR, and more.
+	implementation 'org.apache.commons:commons-compress:1.26.1'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'jakarta.mail:jakarta.mail-api:2.0.1'
+	implementation 'com.sun.mail:jakarta.mail:2.0.1'
+	// Dependency for integration testing with an embedded MySQL server
+	testImplementation 'com.playtika.testcontainers:embedded-mysql:3.1.6'
+	// Dependency for testing Spring Boot applications.
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
